@@ -1,9 +1,20 @@
-﻿using Spectre.Console;
+﻿using Spectre.Console.Cli;
+using WebSec.Command;
+
+namespace WebSec;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task<int> Main(string[] args)
     {
-        AnsiConsole.Markup("[underline red]Hello[/] World!");
+        var app = new CommandApp();
+
+        app.Configure(config =>
+        {
+            config.AddCommand<ScanCommand>("scan");
+        });
+        
+        return await app.RunAsync(args);
     }
 }
+
