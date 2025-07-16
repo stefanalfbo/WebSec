@@ -55,11 +55,11 @@ public class Scan
                     }
                     else if (frameAncestorsPart.Contains("*"))
                     {
-                        Console.WriteLine("⚠️ CSP allows framing from any origin. High clickjacking risk.");
+                        Console.WriteLine("⛔️ CSP allows framing from any origin. High clickjacking risk.");
                     }
                     else
                     {
-                        Console.WriteLine("⚠️ CSP does not prevent clickjacking. Frame ancestors are allowed.");
+                        Console.WriteLine("⛔️ CSP does not prevent clickjacking. Frame ancestors are allowed.");
                     }
                 }
             }
