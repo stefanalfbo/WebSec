@@ -1,6 +1,6 @@
 using System.Net;
-using System.Net.Http;
 using Spectre.Console;
+using WebSec.Core;
 
 namespace WebSec;
 
@@ -147,12 +147,7 @@ public static class AnalyzeRuleRowExtensions
     }
 }
 
-public enum Severity
-    {
-        Ok,
-        Warning,
-        Fail
-    }
+
 
 public static class SeverityExtensions
 {
