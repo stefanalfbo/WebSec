@@ -4,20 +4,23 @@ namespace WebSec.Core;
 
 public class AnalyzeCSP
 {
-    private readonly IEnumerable<string> _cspHeaders;
+    private readonly IEnumerable<string> _cspDirectives;
     private const string NAME = "CSP Clickjacking Protection";
 
     public AnalyzeCSP(HttpResponseHeaders headers)
     {
-        if (headers.TryGetValues("Content-Security-Policy", out var cspHeaders))
+        if (headers.TryGetValues("Content-Security-Policy", out var cspDirectives))
         {
-            _cspHeaders = cspHeaders;
+            _cspDirectives = cspDirectives
+                .SelectMany(directive => directive.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                .Select(directive => directive.Trim())
+                .Where(directive => !string.IsNullOrWhiteSpace(directive));
         }
         else
         {
-            _cspHeaders = Enumerable.Empty<string>();
+            _cspDirectives = Enumerable.Empty<string>();
         }
     }
 
-    public IEnumerable<string> CspHeaders => _cspHeaders;
+    public IEnumerable<string> Directives => _cspDirectives;
 }
