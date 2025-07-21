@@ -146,19 +146,3 @@ public static class AnalyzeRuleRowExtensions
         ];
     }
 }
-
-
-
-public static class SeverityExtensions
-{
-    public static string ToEmoji(this Severity severity)
-    {
-        return severity switch
-        {
-            Severity.Ok => "✅",
-            Severity.Warning => "⚠️",
-            Severity.Fail => "⛔️",
-            _ => throw new ArgumentOutOfRangeException(nameof(severity), severity, null)
-        };
-    }
-}
